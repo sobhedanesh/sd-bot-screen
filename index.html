@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ربات صبح دانش</title>
-    
+   
     <!-- فونت لاله‌زار -->
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
-    
+   
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: linear-gradient(to bottom, #000000 0%, #0f0a00 20%, #1f1400 40%, #2f1e00 60%, #3f2800 80%, #4d3200 100%); /* طلایی خیلی ملایم‌تر و کمتر */
+            background: linear-gradient(to bottom, #000000 0%, #0f0a00 20%, #1f1400 40%, #2f1e00 60%, #3f2800 80%, #4d3200 100%);
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -21,16 +21,9 @@
             font-family: 'Lalezar', cursive;
             position: relative;
         }
-
-        /* مخفی کردن کامل اسکرول‌بار */
-        body::-webkit-scrollbar {
-            display: none;
-        }
-        body {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+        
         .mobile-container {
             width: 420px;
             height: 100vh;
@@ -45,9 +38,9 @@
             box-sizing: border-box;
             z-index: 10;
         }
-
+        
         .title {
-            color: #ffdd99; /* طلایی ملایم‌تر */
+            color: #ffdd99;
             font-size: 32px;
             text-align: center;
             margin-bottom: 50px;
@@ -57,12 +50,8 @@
             gap: 15px;
             justify-content: center;
         }
-
-        .robot-emoji {
-            font-size: 50px;
-        }
-
-        /* هشدار قرمز - شیشه‌ای */
+        .robot-emoji { font-size: 50px; }
+        
         .warning-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -77,8 +66,7 @@
             max-width: 360px;
             z-index: 15;
         }
-
-        /* کادر توضیحات - شیشه‌ای */
+        
         .description-box {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
@@ -94,43 +82,8 @@
             line-height: 1.7;
             z-index: 15;
         }
-
-        /* تب‌ها - شیشه‌ای */
-        .tabs {
-            display: flex;
-            width: 100%;
-            max-width: 360px;
-            margin-bottom: 40px;
-            z-index: 15;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 16px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: white;
-            font-size: 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.4s;
-            margin: 0 8px;
-        }
-
-        .tab.active {
-            background: rgba(255, 220, 100, 0.2); /* طلایی ملایم */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-color: rgba(255, 220, 100, 0.5);
-            color: #ffdd99;
-        }
-
-        /* کادر قیمت - شیشه‌ای با لمس طلایی ملایم */
-        .pricing-content {
-            display: none;
+        
+        .contact-box {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -142,94 +95,27 @@
             width: 100%;
             margin-bottom: 40px;
             z-index: 15;
-        }
-
-        .pricing-content.active {
-            display: block;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: rgba(255, 255, 255, 0.6);
+            color: white;
             font-size: 20px;
+            line-height: 1.6;
         }
-
-        .new-price {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ffdd99; /* طلایی ملایم */
+        
+        .contact-box a {
+            color: #ffdd99;
+            text-decoration: none;
+            font-size: 24px;
+            display: block;
             margin: 15px 0;
         }
-
-        .plan-name {
-            font-size: 26px;
-            color: #ffdd99;
-            margin-bottom: 15px;
+        
+        .contact-box a:hover {
+            text-decoration: underline;
         }
-
-        /* دکمه خرید - شیشه‌ای */
-        .buy-button {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            font-size: 22px;
-            text-align: center;
-            padding: 18px 30px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.4s;
-            margin: 25px auto 0 auto;
-            display: block;
-            width: fit-content;
-            min-width: 240px;
-            max-width: 300px;
-        }
-
-        .buy-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-        }
-
-        /* کادر تماس (مودال) - شیشه‌ای */
-        .contact-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            color: white;
-            font-size: 22px;
-            text-align: center;
-            padding: 40px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 220, 100, 0.4);
-            max-width: 320px;
-            width: 90%;
-            z-index: 100;
-        }
-
-        .contact-modal.active {
-            display: block;
-        }
-
-        .close-modal {
-            margin-top: 30px;
-            font-size: 40px;
-            cursor: pointer;
-            color: #ff6666;
-        }
-
-        /* ستاره‌ها - طلایی ملایم */
+        
         @keyframes twinkleFloat {
             0%, 100% { opacity: 0.3; transform: translateY(0); }
             50% { opacity: 0.8; transform: translateY(-20px); }
         }
-
         .star {
             position: absolute;
             background-color: #ffdd99;
@@ -246,12 +132,12 @@
         <div class="title">
             <span class="robot-emoji">🤖</span> ربات صبح دانش
         </div>
-
+        
         <!-- هشدار قرمز -->
         <div class="warning-box">
             هوش مصنوعی کاملا رایگانه ولی برای استفاده از ربات باید اشتراک بخرید
         </div>
-
+        
         <!-- توضیحات -->
         <div class="description-box">
             شما میتوانید این ربات رو برای پشتیبانی وبسایت خود و واتساپ استفاده کنید همچنین این ربات ادمین تلگرام و اینستاگرام و فیس بوک و ... شما هم میشه و میتونه تو کار ها کمکتون کنه.
@@ -262,41 +148,17 @@
             <br><br>
             امنیت بالا و یکپارچگی با پلتفرم‌های مختلف، تجربه‌ای روان و مطمئن رو تضمین می‌کنه.
         </div>
-
-        <!-- تب‌ها -->
-        <div class="tabs">
-            <div class="tab active" data-plan="monthly">ماهانه</div>
-            <div class="tab" data-plan="annual">سالانه</div>
+        
+        <!-- کادر مشاوره -->
+        <div class="contact-box">
+            برای مشاوره آنلاین<br>با این شماره تماس بگیرید یا از طریق ایمیل پیام دهید
+            <br><br>
+            <strong>تلفن:</strong><br>
+            <a href="tel:+989039304464">09039304464</a>
+            <br><br>
+            <strong>ایمیل:</strong><br>
+            <a href="mailto:arshammajidi168@gmail.com">arshammajidi168@gmail.com</a>
         </div>
-
-        <!-- محتوای ماهانه -->
-        <div id="monthly" class="pricing-content active">
-            <div class="plan-name">اشتراک ماهانه</div>
-            <div class="old-price">۴۰۰,۰۰۰ تومان</div>
-            <div class="new-price">۲۰۰,۰۰۰ تومان</div>
-            <div class="buy-button" onclick="openContact()">
-                خرید اشتراک
-            </div>
-        </div>
-
-        <!-- محتوای سالانه -->
-        <div id="annual" class="pricing-content">
-            <div class="plan-name">اشتراک سالانه</div>
-            <div class="old-price">۲,۴۰۰,۰۰۰ تومان</div>
-            <div class="new-price">۱,۸۰۰,۰۰۰ تومان</div>
-            <div class="buy-button" onclick="openContact()">
-                خرید اشتراک
-            </div>
-        </div>
-    </div>
-
-    <!-- کادر تماس (مودال) -->
-    <div id="contactModal" class="contact-modal">
-        برای خرید اشتراک با این شماره تماس بگیرید<br><br>
-        <a href="tel:+989039304464" style="color: #ffdd99; font-size: 30px; text-decoration: none;">
-            +۹۸۹۰۳۹۳۰۴۴۶۴
-        </a>
-        <div class="close-modal" onclick="closeContact()">✖</div>
     </div>
 
     <script>
@@ -305,44 +167,21 @@
         for (let i = 0; i < numStars; i++) {
             let star = document.createElement('div');
             star.classList.add('star');
-            
+           
             let size = Math.random() * 3 + 1;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
-            
+           
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
-            
+           
             let duration = Math.random() * 6 + 6;
             star.style.animationDuration = duration + 's';
-            
+           
             let delay = Math.random() * 5;
             star.style.animationDelay = delay + 's';
-            
+           
             document.body.appendChild(star);
-        }
-
-        // سوئیچ تب‌ها
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                const plan = tab.getAttribute('data-plan');
-                document.querySelectorAll('.pricing-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(plan).classList.add('active');
-            });
-        });
-
-        // باز و بسته کردن کادر تماس
-        function openContact() {
-            document.getElementById('contactModal').classList.add('active');
-        }
-
-        function closeContact() {
-            document.getElementById('contactModal').classList.remove('active');
         }
     </script>
 </body>
