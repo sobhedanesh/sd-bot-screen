@@ -6,7 +6,7 @@
     <title>ربات صبح دانش</title>
    
     <!-- فونت لاله‌زار -->
-    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap  " rel="stylesheet">
    
     <style>
         body, html {
@@ -83,7 +83,33 @@
             z-index: 15;
         }
         
-        .contact-box {
+        .consult-btn {
+            background: linear-gradient(135deg, #ffdd99, #ffb347);
+            color: #2f1e00;
+            font-family: 'Lalezar', cursive;
+            font-size: 22px;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 40px;
+            z-index: 15;
+            box-shadow: 0 5px 20px rgba(255, 221, 153, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 340px;
+        }
+        
+        .consult-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 221, 153, 0.6);
+        }
+        
+        .consult-btn:active {
+            transform: translateY(0);
+        }
+        
+        .email-message {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -98,18 +124,26 @@
             color: white;
             font-size: 20px;
             line-height: 1.6;
+            display: none;
+            animation: fadeIn 0.4s ease;
         }
         
-        .contact-box a {
+        .email-message a {
             color: #ffdd99;
             text-decoration: none;
             font-size: 24px;
             display: block;
             margin: 15px 0;
+            direction: ltr;
         }
         
-        .contact-box a:hover {
+        .email-message a:hover {
             text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes twinkleFloat {
@@ -149,19 +183,25 @@
             امنیت بالا و یکپارچگی با پلتفرم‌های مختلف، تجربه‌ای روان و مطمئن رو تضمین می‌کنه.
         </div>
         
-        <!-- کادر مشاوره -->
-        <div class="contact-box">
-            برای مشاوره آنلاین<br>با این شماره تماس بگیرید یا از طریق ایمیل پیام دهید
-            <br><br>
-            <strong>تلفن:</strong><br>
-            <a href="tel:+989039304464">09039304464</a>
-            <br><br>
-            <strong>ایمیل:</strong><br>
+        <!-- دکمه درخواست مشاوره -->
+        <button class="consult-btn" onclick="showEmail()">درخواست مشاوره</button>
+        
+        <!-- پیام ایمیل (مخفی تا زمان کلیک) -->
+        <div class="email-message" id="emailBox">
+            لطفا با این ایمیل در ارتباط باشید<br>
             <a href="mailto:arshammajidi168@gmail.com">arshammajidi168@gmail.com</a>
         </div>
     </div>
 
     <script>
+        // نمایش ایمیل پس از کلیک روی دکمه
+        function showEmail() {
+            const emailBox = document.getElementById('emailBox');
+            emailBox.style.display = 'block';
+            // اسکرول نرم به پایین برای نمایش پیام
+            emailBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
         // ستاره‌های طلایی ملایم متحرک
         const numStars = 80;
         for (let i = 0; i < numStars; i++) {
