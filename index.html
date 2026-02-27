@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ربات صبح دانش</title>
-   
+  
     <!-- فونت لاله‌زار -->
-    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap  " rel="stylesheet">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+  
     <style>
         body, html {
             margin: 0;
@@ -23,7 +23,7 @@
         }
         body::-webkit-scrollbar { display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
-        
+       
         .mobile-container {
             width: 420px;
             height: 100vh;
@@ -38,7 +38,7 @@
             box-sizing: border-box;
             z-index: 10;
         }
-        
+       
         .title {
             color: #ffdd99;
             font-size: 32px;
@@ -51,7 +51,7 @@
             justify-content: center;
         }
         .robot-emoji { font-size: 50px; }
-        
+       
         .warning-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -66,7 +66,7 @@
             max-width: 360px;
             z-index: 15;
         }
-        
+       
         .description-box {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
@@ -82,70 +82,35 @@
             line-height: 1.7;
             z-index: 15;
         }
-        
-        .consult-btn {
+       
+        .sample-link {
             background: linear-gradient(135deg, #ffdd99, #ffb347);
             color: #2f1e00;
             font-family: 'Lalezar', cursive;
-            font-size: 22px;
-            padding: 18px 40px;
+            font-size: 20px;
+            padding: 18px 30px;
             border: none;
             border-radius: 30px;
-            cursor: pointer;
+            text-align: center;
             margin-bottom: 40px;
             z-index: 15;
             box-shadow: 0 5px 20px rgba(255, 221, 153, 0.4);
             transition: all 0.3s ease;
             width: 100%;
             max-width: 340px;
+            text-decoration: none;
+            display: block;
         }
-        
-        .consult-btn:hover {
+       
+        .sample-link:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 221, 153, 0.6);
         }
-        
-        .consult-btn:active {
+       
+        .sample-link:active {
             transform: translateY(0);
         }
-        
-        .email-message {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 220, 100, 0.3);
-            border-radius: 25px;
-            padding: 30px 20px;
-            text-align: center;
-            max-width: 340px;
-            width: 100%;
-            margin-bottom: 40px;
-            z-index: 15;
-            color: white;
-            font-size: 20px;
-            line-height: 1.6;
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        
-        .email-message a {
-            color: #ffdd99;
-            text-decoration: none;
-            font-size: 24px;
-            display: block;
-            margin: 15px 0;
-            direction: ltr;
-        }
-        
-        .email-message a:hover {
-            text-decoration: underline;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
+       
         @keyframes twinkleFloat {
             0%, 100% { opacity: 0.3; transform: translateY(0); }
             50% { opacity: 0.8; transform: translateY(-20px); }
@@ -166,12 +131,12 @@
         <div class="title">
             <span class="robot-emoji">🤖</span> ربات صبح دانش
         </div>
-        
+       
         <!-- هشدار قرمز -->
         <div class="warning-box">
             هوش مصنوعی کاملا رایگانه ولی برای استفاده از ربات باید اشتراک بخرید
         </div>
-        
+       
         <!-- توضیحات -->
         <div class="description-box">
             شما میتوانید این ربات رو برای پشتیبانی وبسایت خود و واتساپ استفاده کنید همچنین این ربات ادمین تلگرام و اینستاگرام و فیس بوک و ... شما هم میشه و میتونه تو کار ها کمکتون کنه.
@@ -182,45 +147,33 @@
             <br><br>
             امنیت بالا و یکپارچگی با پلتفرم‌های مختلف، تجربه‌ای روان و مطمئن رو تضمین می‌کنه.
         </div>
-        
-        <!-- دکمه درخواست مشاوره -->
-        <button class="consult-btn" onclick="showEmail()">درخواست مشاوره</button>
-        
-        <!-- پیام ایمیل (مخفی تا زمان کلیک) -->
-        <div class="email-message" id="emailBox">
-            لطفا با این ایمیل در ارتباط باشید<br>
-            <a href="mailto:arshammajidi168@gmail.com">arshammajidi168@gmail.com</a>
-        </div>
+       
+        <!-- جمله جدید به جای دکمه و ایمیل -->
+        <a href="https://sobhe دانش.ai" class="sample-link" target="_blank">
+            میتوانید نمونه‌ها رو در وبسایت هوش مصنوعی صبح دانش مشاهده کنید
+        </a>
     </div>
 
     <script>
-        // نمایش ایمیل پس از کلیک روی دکمه
-        function showEmail() {
-            const emailBox = document.getElementById('emailBox');
-            emailBox.style.display = 'block';
-            // اسکرول نرم به پایین برای نمایش پیام
-            emailBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
         // ستاره‌های طلایی ملایم متحرک
         const numStars = 80;
         for (let i = 0; i < numStars; i++) {
             let star = document.createElement('div');
             star.classList.add('star');
-           
+          
             let size = Math.random() * 3 + 1;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
-           
+          
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
-           
+          
             let duration = Math.random() * 6 + 6;
             star.style.animationDuration = duration + 's';
-           
+          
             let delay = Math.random() * 5;
             star.style.animationDelay = delay + 's';
-           
+          
             document.body.appendChild(star);
         }
     </script>
